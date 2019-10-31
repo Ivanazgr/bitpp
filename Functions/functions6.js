@@ -107,6 +107,7 @@ function returnDigits(num) {
 
 }
 
+
 console.log(returnDigits(789654135));
 
 /*5.
@@ -183,3 +184,146 @@ function maxElement(arr) {
 
 
 console.log(maxElement([1, undefined, "Ivana", 89, 41, -3, 1.256, NaN, Infinity, "", null]));
+
+/*
+
+8.
+
+Write a function to find the maximum and minimum elements. Function returns an array.
+
+*/
+
+function MaxMin(arr) {
+
+    var max = arr[0];
+    var min = arr[0];
+
+    for (var i = 0; i < arr.length; i++) {
+
+        if (max < arr[i]) {
+
+            max = arr[i];
+
+        }
+
+    }
+
+    for (var j = 0; j < arr.length; j++) {
+
+        if (min > arr[j]) {
+
+            min = arr[j];
+
+        }
+
+    }
+
+    return [max, min];
+
+}
+console.log(MaxMin([4, 54, 27, -41, -78, 65, -41, 4, 54]));
+
+/*
+
+9.
+
+Write a function to find the median element of array.
+
+Median is the middle value of a set of data. To determine the median value in a sequence of numbers, 
+the numbers must first be arranged in ascending or descending order.
+
+If there is an odd amount of numbers, the median value is the number that is in the middle, with the same amount 
+of numbers below and above.
+
+If there is an even amount of numbers in the list, the median is the average of the two middle values.
+
+*/
+
+
+function medianElement(numArray) {
+
+
+    /*first sort the numArray in descending order*/
+
+    var max;
+    var target;
+
+    for (var i = 0; i < numArray.length - 1; i++) {
+        max = i;
+        for (var j = i + 1; j < numArray.length; j++) {
+            if (numArray[j] > numArray[max]) {
+                max = j;
+            }
+        }
+        if (max != i) {
+            target = numArray[i];
+            numArray[i] = numArray[max];
+            numArray[max] = target;
+        }
+    }
+
+    /*print the sorted array*/
+
+    console.log(numArray);
+
+    /*now find the median element in sorted array*/
+
+    if ((numArray.length) % 2 !== 0) {
+
+        return numArray[(numArray.length - 1) / 2];
+
+    }
+
+    else {
+
+        return (numArray[numArray.length / 2] + numArray[numArray.length / 2 - 1]) / 2;
+
+    }
+
+}
+
+console.log(medianElement([8, 2, -4, 3, 5, -9, 15]));
+
+console.log(medianElement([8, 2, -4, 3, 5, -9, 15, 20]));
+
+/*
+
+10.
+
+Write a function to find the element that occurs most frequently.
+
+*/
+
+function findMostFrequentElement(arr) {
+
+    var count = 1;
+    var count_max = 1;
+    var mostFrequentElement = arr[0];
+
+    for (var i = 0; i < arr.length; i++) {
+        for (var j = i + 1; j < arr.length; j++) {
+            if (arr[i] === arr[j]) {
+                count++;
+            }
+
+        }
+        if (count > count_max) {
+            count_max = count;
+            mostFrequentElement = arr[i];
+        }
+
+        count = 1;
+
+    }
+
+    return mostFrequentElement;
+
+}
+
+console.log(findMostFrequentElement([1, 2, 5, 7, 4, 3, 2, 3, 7, 1, 7, 2, 7]));
+
+
+
+
+
+
